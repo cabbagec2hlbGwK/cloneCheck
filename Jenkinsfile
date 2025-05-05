@@ -36,7 +36,7 @@ pipeline {
                 sh "chmod +x ./${repoFolder}/${params.SCRIPT_TO_RUN}"
                 dir("${repoFolder}") {
                     sh "git status"
-                    sh "name1='test'"
+                    sh "echo $GITHUB_ORG"
                     sh "./${params.SCRIPT_TO_RUN} ${params.BRANCH} ${params.FROM_DATE} ${params.UNTIL_DATE} commits_by_jira.txt"
                 }
                 archiveArtifacts artifacts: "${repoFolder}/commits_by_jira.txt", fingerprint: true
