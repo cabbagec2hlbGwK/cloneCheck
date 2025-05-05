@@ -8,6 +8,8 @@ pipeline {
         )
         string(name: 'BRANCH', defaultValue: 'main', description: 'Branch to checkout')
         string(name: 'SCRIPT_TO_RUN', defaultValue: 'branch.sh', description: 'Script to run inside the repo')
+        string(name: 'FROM_DATE', defaultValue: 'branch.sh', description: 'Extract commits from:')
+        string(name: 'UNTIL_DATE', defaultValue: 'branch.sh', description: 'Extract commits till:')
     }
     environment {
         // Change the following to match your organization or user
@@ -35,9 +37,9 @@ pipeline {
                 dir("${repoFolder}") {
                     sh "git status"
                     sh "name1='test'"
-                    sh "./${params.SCRIPT_TO_RUN} ${repoFolder}"
+                    sh "./${params.SCRIPT_TO_RUN} ${params.BRANCH} ${params.FROM_DATE} ${params.UNTIL_DATE} commits_by_jira.txt"
                 }
-                archiveArtifacts artifacts: "${repoFolder}/test.txt", fingerprint: true
+                archiveArtifacts artifacts: "${repoFolder}/commits_by_jira.txt", fingerprint: true
             }
         }
     }
