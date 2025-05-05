@@ -16,7 +16,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                sh "git clone -b ${params.BRANCH} ${params.SCRIPT_TO_RUN}"
+                sh "git clone -b ${params.BRANCH} ${params.REPO_NAME}"
             }
         }
         stage('Run Script') {
