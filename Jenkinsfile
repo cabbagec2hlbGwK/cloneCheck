@@ -23,7 +23,8 @@ pipeline {
             steps {
                 sh "chmod +x ./${params.SCRIPT_TO_RUN}"
                 sh "cd AskGpt-cli"
-                sh "./${params.SCRIPT_TO_RUN}"
+                sh "git status"
+                sh "../${params.SCRIPT_TO_RUN}"
             }
         }
     }
