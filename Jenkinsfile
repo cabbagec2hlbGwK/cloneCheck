@@ -8,8 +8,8 @@ pipeline {
         )
         string(name: 'BRANCH', defaultValue: 'main', description: 'Branch to checkout')
         string(name: 'SCRIPT_TO_RUN', defaultValue: 'branch.sh', description: 'Script to run inside the repo')
-        string(name: 'FROM_DATE', defaultValue: 'branch.sh', description: 'Extract commits from:')
-        string(name: 'UNTIL_DATE', defaultValue: 'branch.sh', description: 'Extract commits till:')
+        string(name: 'FROM_DATE', defaultValue: '2025-04-03', description: 'Extract commits from:')
+        string(name: 'UNTIL_DATE', defaultValue: '2025-04-03', description: 'Extract commits till:')
     }
     environment {
         // Change the following to match your organization or user
