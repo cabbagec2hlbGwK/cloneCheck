@@ -35,7 +35,7 @@ pipeline {
                 dir("${repoFolder}") {
                     sh "git status"
                     sh "name1='test'"
-                    sh "./${params.SCRIPT_TO_RUN} \$name1"
+                    sh "./${params.SCRIPT_TO_RUN} ${repoFolder}"
                 }
                 archiveArtifacts artifacts: "${repoFolder}/test.txt", fingerprint: true
             }
