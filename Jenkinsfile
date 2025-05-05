@@ -12,7 +12,7 @@ pipeline {
     environment {
         // Change the following to match your organization or user
         GITHUB_ORG = 'your-org'
-        BRANCH = 'release'
+        BRANCH = 'main'
         SCRIPT_TO_RUN = 'branch.sh'
     }
     stages {
