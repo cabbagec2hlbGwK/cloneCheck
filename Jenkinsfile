@@ -34,6 +34,7 @@ pipeline {
                 sh "chmod +x ./${repoFolder}/${params.SCRIPT_TO_RUN}"
                 dir("${repoFolder}") {
                     sh "git status"
+                    sh "name1='test'"
                     sh "./${params.SCRIPT_TO_RUN}"
                 }
                 archiveArtifacts artifacts: "${repoFolder}/test.txt", fingerprint: true
