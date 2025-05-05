@@ -33,10 +33,10 @@ pipeline {
                 sh"cp ./${params.SCRIPT_TO_RUN} ./${repoFolder}/${params.SCRIPT_TO_RUN}"
                 sh "chmod +x ./${repoFolder}/${params.SCRIPT_TO_RUN}"
                 dir("${repoFolder}") {
-                    sh "pwd"
                     sh "git status"
                     sh "./${params.SCRIPT_TO_RUN}"
                 }
+                archiveArtifacts artifacts: '${repoFolder}/missing_git_users.csv', fingerprint: true
             }
         }
     }
