@@ -16,7 +16,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                sh "git clone -b ${params.BRANCH} ${params.REPO_NAME} || echo "Repo alredy exist" && cd AskGpt-cli && git checkout ${params.BRANCH} && git status "
+                sh "git clone -b ${params.BRANCH} ${params.REPO_NAME} || echo 'Repo alredy exist' && cd AskGpt-cli && git checkout ${params.BRANCH} && git status "
                 sh "ls -la"
             }
         }
