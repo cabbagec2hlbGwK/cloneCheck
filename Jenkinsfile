@@ -16,16 +16,21 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                sh "git clone -b ${params.BRANCH} ${params.REPO_NAME} || echo 'Repo alredy exist' && cd AskGpt-cli && git checkout ${params.BRANCH} && git status "
+                sh "REPO_FOLDER=$(echo ${params.REPO_NAME} | awk -F'/' '{print $NF}'| cut -d '.' -f1 )"
+                sh "git clone -b ${params.BRANCH} ${params.REPO_NAME} || echo 'Repo alredy exist' && cd $REPO_FOLDER && git checkout ${params.BRANCH} && git pull && git status "
                 sh "ls -la"
             }
         }
         stage('Run Script') {
             steps {
-                sh "chmod +x ./${params.SCRIPT_TO_RUN}"
-                sh "cd AskGpt-cli"
-                sh "git status"
-                sh "../${params.SCRIPT_TO_RUN}"
+                sh "REPO_FOLDER=$(echo ${params.REPO_NAME} | awk -F'/' '{print $NF}'| cut -d '.' -f1 )"
+                sh"cp ./${params.SCRIPT_TO_RUN} ./$REPO_FOLDER/${params.SCRIPT_TO_RUN}"
+                sh "chmod +x ./$REPO_FOLDER/${params.SCRIPT_TO_RUN}"
+                dir('your-sub-directory') {
+                    sh "pwd"
+                    sh "git status"
+                    sh "./${params.SCRIPT_TO_RUN}"
+                }
             }
         }
     }
